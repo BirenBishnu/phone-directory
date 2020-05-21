@@ -2,29 +2,32 @@ import React, { Component } from 'react';
 import Header from './Header.js';
 import './App.css';
 
+
+// let subscribers = [
+//   {
+//     id: 1,
+//     name: "Shilpa Bhat",
+//     phone: "8888888888"
+//   },
+//   {
+//     id: 2,
+//     name: "Srishti Gupta",
+//     phone: "9999999999"
+//   }
+// ];
+
 class App extends Component {
 
-
-  clickHandler(message){
-    alert(message);
-    
+  constructor() 
+  {
+    super();
+    this.state = {
+      subscribersListToShow: []
+    }
   }
 
+
   render() {
-
-    let subscribers = [
-      {
-        id: 1,
-        name: "Shilpa Bhat",
-        phone: "8888888888"
-      },
-      {
-        id: 2,
-        name: "Srishti Gupta",
-        phone: "9999999999"
-      }
-    ];
-
     return (
       <div>
         <Header heading="Phone Directory" />
@@ -37,12 +40,12 @@ class App extends Component {
           </div>
 
           {
-            subscribers.map(sub => {
+            this.state.subscribersListToShow.map(sub => {
               return <div key={sub.id} className="grid-container">
                 <span className="grid-item">{sub.name}</span>
                 <span className="grid-item">{sub.phone}</span>
                 <span className="grid-item action-btn-container">
-                  <button className="custom-btn delete-btn"  onClick={this.clickHandler.bind(this,"Delete Clicked")}>Delete</button>
+                  <button className="custom-btn delete-btn" onClick={this.clickHandler.bind(this, "Delete Clicked")}>Delete</button>
                 </span>
               </div>
             })
